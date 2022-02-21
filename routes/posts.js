@@ -1,16 +1,10 @@
 import express from "express";
-import { getAllPosts, createPost } from "../models/posts.js";
+import { createPost, readPosts } from "../models/posts.js";
 
 const router = express.Router();
 
 /* GET posts listing. */
-router.get("/", async (req, res) => {
-  const posts = await getAllPosts();
-  res.json({
-    success: true,
-    payload: posts,
-  });
-});
+router.get("/", readPosts);
 
 /* POST post listing. */
 router.post("/", async (req, res) => {
