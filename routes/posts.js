@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllPosts } from "../models/posts.js";
+import { getAllPosts, createPost } from "../models/posts.js";
 
 const router = express.Router();
 
@@ -14,13 +14,21 @@ const router = express.Router();
 // });
 
 /* GET posts listing. */
-router.get("/", (req, res, next) => {
-  res.json({ msg: "GET working" });
+router.get("/", async (req, res) => {
+  const posts = await getAllPosts();
+  res.json({
+    success: true,
+    payload: posts,
+  });
 });
 
 /* POST post listing. */
-router.post("/", (req, res) => {
-  res.json({ msg: "POST working" });
+router.post("/", async (req, res) => {
+  const result = await createPost(req.body);
+  res.json({
+    success: true,
+    message: `Post created: ${req.body.title}`,
+  });
 });
 
 export default router;
