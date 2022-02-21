@@ -1,4 +1,3 @@
-import query from "../db/connection.js";
 import { createPost } from "../db/scripts/posts/populateTable.js";
 import { getAllPosts } from "../db/scripts/posts/readTable.js";
 
