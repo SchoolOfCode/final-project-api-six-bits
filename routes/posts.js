@@ -1,5 +1,5 @@
 import express from "express";
-import { createPost, readPosts } from "../models/posts.js";
+import { insertPost, readPosts } from "../models/posts.js";
 
 const router = express.Router();
 
@@ -7,12 +7,6 @@ const router = express.Router();
 router.get("/", readPosts);
 
 /* POST post listing. */
-router.post("/", async (req, res) => {
-  const result = await createPost(req.body);
-  res.json({
-    success: true,
-    message: `Post created: ${req.body.title}`,
-  });
-});
+router.post("/", insertPost);
 
 export default router;

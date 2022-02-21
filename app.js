@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
 import __dirname from "./dirname.js";
 import cookieParser from "cookie-parser";
@@ -9,7 +9,7 @@ import logger from "morgan";
 
 import postsRouter from "./routes/posts.js";
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 
