@@ -8,7 +8,7 @@ import cors from "cors";
 import logger from "morgan";
 
 import postsRouter from "./routes/posts.js";
-
+import usersRouter from "./routes/users.js";
 // dotenv.config();
 
 const app = express();
@@ -21,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/posts", postsRouter);
+app.use("/api/users", usersRouter);
 
 app.use(function (req, res, next) {
   res
