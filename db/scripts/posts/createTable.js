@@ -1,7 +1,7 @@
 import query from "../../connection.js";
 
 const response = await query(
-  `CREATE TABLE IF NOT EXISTS posts (id SERIAL PRIMARY KEY, title TEXT, full_name TEXT, description TEXT, location TEXT, phone_number TEXT, email TEXT, free BOOLEAN NOT NULL, price NUMERIC, date TEXT);`
+  `CREATE TABLE IF NOT EXISTS posts (post_id SERIAL PRIMARY KEY, user_id INTEGER, title TEXT, description TEXT, location TEXT, free BOOLEAN, price NUMERIC, date TEXT, FOREIGN KEY user_id REFERENCES users(user_id));`
 );
 
 console.log(response);
