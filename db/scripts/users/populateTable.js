@@ -1,28 +1,20 @@
 import query from "../../connection.js";
 
-export async function createPost({
-  title,
-  full_name,
-  description,
-  location,
+export async function createUser({
+  first_name,
+  last_name,
   phone_number,
   email,
-  free,
-  price,
-  date,
+  user_created,
 }) {
   const result = await query(
-    `INSERT INTO posts (title, full_name, description, location, phone_number, email, free, price, date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *;`,
+    `INSERT INTO posts (first_name, last_name, phone_number, email, user_created) VALUES ($1,$2,$3,$4,$5) RETURNING *;`,
     [
-      title,
-      full_name,
-      description,
-      location,
+      first_name,
+      last_name,
       phone_number,
       email,
-      free,
-      price,
-      date,
+      user_created,
     ]
   );
   return result.rows;
