@@ -9,7 +9,6 @@ import logger from "morgan";
 
 import postsRouter from "./routes/posts.js";
 import usersRouter from "./routes/users.js";
-import { errorHandler } from "./middleware/errorHandler.js";
 // dotenv.config();
 
 const app = express();
@@ -30,6 +29,9 @@ app.use(function (req, res, next) {
     .json({ message: "We couldn't find what you were looking for 😞" });
 });
 
-app.use(errorHandler)
+app.use(function (err, req, res, next) {
+  // const statusCode = res.statusCode ? res.statusCode : 500
+  res.status(res.statusCode).json({ message: err.message });
+});
 
 export default app;

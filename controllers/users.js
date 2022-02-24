@@ -1,5 +1,6 @@
 import { createUser } from "../db/scripts/users/populateTable.js";
 import { getAllUsers } from "../db/scripts/users/readTable.js";
+import asyncHandler from "express-async-handler";
 
 export async function readUsers(req, res) {
   const data = await getAllUsers();
@@ -10,20 +11,15 @@ export async function readUsers(req, res) {
   });
 }
 
-export async function registerUser(req, res) {
-  // Check if the fields are not empty
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
+export const registerUser = asyncHandler(async (req, res) => {
+  const { first_name, last_name, phone_number, email, password } = req.body;
+  // Check if there isn't any field missing
+  if (!first_name || !last_name || !phone_number || !email || !password) {
     res.status(400);
     throw new Error("Please add all fields");
   }
-  // Check if user already exists
-  // const data = await createUser(req.body);
-  // res.status(201).json({
-  //   status: "success",
-  //   message: "New user was created",
-  //   payload: data,
-  // });
-}
+  // Check if is the user is already in the database
+  res.json({ msg: "ok" });
+});
 
 export async function loginUser(req, res) {}
