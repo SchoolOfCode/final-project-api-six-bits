@@ -1,5 +1,5 @@
 import { createUser } from "../db/scripts/users/populateTable.js";
-import { getAllUsers } from "../db/scripts/users/readTable.js";
+import { getAllUsers, getUser } from "../db/scripts/users/readTable.js";
 import asyncHandler from "express-async-handler";
 
 export async function readUsers(req, res) {
@@ -19,6 +19,13 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
   // Check if is the user is already in the database
+  const userFound = await getUser({ email });
+  if (userFound.length > 0) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+  
+
   res.json({ msg: "ok" });
 });
 

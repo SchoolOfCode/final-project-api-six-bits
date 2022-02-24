@@ -30,7 +30,6 @@ app.use(function (req, res, next) {
 });
 
 app.use(function (err, req, res, next) {
-  // const statusCode = res.statusCode ? res.statusCode : 500
   res.status(res.statusCode).json({ message: err.message });
 });
 
