@@ -5,17 +5,12 @@ export async function createUser({
   last_name,
   phone_number,
   email,
+  password,
   user_created,
 }) {
   const result = await query(
-    `INSERT INTO users (first_name, last_name, phone_number, email, user_created) VALUES ($1,$2,$3,$4,$5) RETURNING *;`,
-    [
-      first_name,
-      last_name,
-      phone_number,
-      email,
-      user_created,
-    ]
+    `INSERT INTO users (first_name, last_name, phone_number, email, password, user_created) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *;`,
+    [first_name, last_name, phone_number, email, password, user_created]
   );
   return result.rows;
 }

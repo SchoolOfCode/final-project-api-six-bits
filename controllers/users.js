@@ -1,5 +1,6 @@
 import { createUser } from "../db/scripts/users/populateTable.js";
 import { getAllUsers, getUser } from "../db/scripts/users/readTable.js";
+import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
 
 export async function readUsers(req, res) {
@@ -24,7 +25,8 @@ export const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User already exists");
   }
-  
+  // Create the user and save it into the database with a hash password
+
 
   res.json({ msg: "ok" });
 });
