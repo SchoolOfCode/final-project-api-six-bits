@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
-// import dotenv from "dotenv";
+// import dotenv from "doten
+import jwt from "express-jwt";
+import jwks from "jwks-rsa";
 
 import __dirname from "./dirname.js";
 import cookieParser from "cookie-parser";
@@ -11,7 +13,9 @@ import postsRouter from "./routes/posts.js";
 import usersRouter from "./routes/users.js";
 // dotenv.config();
 
+// Middleware
 const app = express();
+app.use(jwtCheck);
 
 app.use(logger("dev"));
 app.use(cors());
@@ -20,6 +24,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// Auth0
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: "https://dev-8t7r10j2.eu.auth0.com/.well-known/jwks.json",
+  }),
+  audience: "https://dev-8t7r10j2.eu.auth0.com/api/v2/",
+  issuer: "https://dev-8t7r10j2.eu.auth0.com/",
+  algorithms: ["RS256"],
+});
+
+// Middleware
+app.use(jwtCheck);
 app.use("/api/posts", postsRouter);
 app.use("/api/users", usersRouter);
 
