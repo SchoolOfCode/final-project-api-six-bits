@@ -5,4 +5,3 @@ const response = await query(
 );
 
 console.log(response);
-
