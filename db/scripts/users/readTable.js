@@ -6,7 +6,7 @@ export async function getAllUsers() {
 }
 
 export async function getUser(auth_id) {
-  const result = await query(`SELECT * FROM users WHERE auth_id = $(1);`, [
+  const result = await query(`SELECT * FROM users WHERE auth_id = ($1);`, [
     auth_id,
   ]);
   return result.rows;
