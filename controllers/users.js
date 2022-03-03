@@ -11,7 +11,8 @@ export async function readUsers(req, res) {
 }
 
 export async function readUser(req, res) {
-  const user = await getUser(req.body.auth_id);
+  const auth_id = req.body.id;
+  const user = await getUser(auth_id);
   res.status(200).json({
     status: "success",
     message: "Read user",
