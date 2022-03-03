@@ -5,6 +5,7 @@ export async function createUser({
   first_name,
   last_name,
   phone_number,
+  email,
   user_created,
 }) {
   const result = await query(
