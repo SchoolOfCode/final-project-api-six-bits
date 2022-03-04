@@ -1,3 +1,4 @@
+import { deletePost } from "../db/scripts/posts/deletePost.js";
 import { createPost } from "../db/scripts/posts/populateTable.js";
 import { getAllPosts, getUserPosts } from "../db/scripts/posts/readTable.js";
 
@@ -24,6 +25,14 @@ export async function readUserPosts(req, res) {
   res.status(200).json({
     status: "success",
     message: "All user's posts",
+    payload: data,
+  });
+}
+export async function removePost(req, res) {
+  const data = await deletePost(req.body);
+  res.status(200).json({
+    status: "success",
+    message: "Post deleted",
     payload: data,
   });
 }
