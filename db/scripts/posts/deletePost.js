@@ -1,8 +1,5 @@
 import query from "../../connection.js";
 
-const response = await query(
-  `DELETE FROM posts USING users WHERE posts.user_id = users.user_id AND users.auth_id = 'auth0|6218c0cbeae91f006a0ab102' AND posts.title = 'Test123' AND posts.description = 'testagain' AND posts.location = 'London' AND posts.free = true AND posts.price = 0 AND posts.date = '10/10/2021';`
-);
 export async function deletePost({
   auth_id,
   title,
