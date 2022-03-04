@@ -21,7 +21,6 @@ export async function insertPost(req, res) {
 
 export async function readUserPosts(req, res) {
   const data = await getUserPosts(req.params.id);
-
   res.status(200).json({
     status: "success",
     message: "All user's posts",

@@ -15,6 +15,7 @@ export async function createPost({
     [auth_id]
   );
   const user_id = foundUserID.rows[0].user_id;
+
   const result = await query(
     `INSERT INTO posts (user_id, title, description, location, free, price, date) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *;`,
     [user_id, title, description, location, free, price, date]
