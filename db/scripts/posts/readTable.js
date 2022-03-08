@@ -1,7 +1,7 @@
 import query from "../../connection.js";
 
 export async function getAllPosts() {
-  const result = await query(`SELECT * FROM posts FULL JOIN users ON posts.user_id = users.user_id`);
+  const result = await query(`SELECT * FROM posts FULL JOIN users ON posts.user_id = users.user_id WHERE post_id IS NOT NULL`);
 
   return result.rows;
 }
