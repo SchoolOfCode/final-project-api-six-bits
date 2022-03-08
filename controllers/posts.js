@@ -29,7 +29,7 @@ export async function readUserPosts(req, res) {
   });
 }
 export async function removePost(req, res) {
-  const data = await deletePost(req.body);
+  const data = await deletePost(+req.params.id);
   res.status(200).json({
     status: "success",
     message: "Post deleted",
