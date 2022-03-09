@@ -32,7 +32,6 @@ export const insertUser = asyncHandler(async (req, res) => {
     !email ||
     !user_created
   ) {
-    res.status(400);
     throw new Error("Fields are missing.");
   }
   const newUser = await createUser(req.body);
