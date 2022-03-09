@@ -38,7 +38,7 @@ export const insertUser = asyncHandler(async (req, res) => {
   const newUser = await createUser(req.body);
   res.status(201).json({
     status: "success",
-    message: "New user was created",
+    message: "New user created",
     payload: newUser,
   });
 });
