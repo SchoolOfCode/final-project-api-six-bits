@@ -17,7 +17,7 @@ describe("GET /api/posts", function () {
 });
 
 describe("POST /api/posts", function () {
-  test("gives us back 201, with a a message", async function () {
+  test("gives us back 201, with a a message and some data", async function () {
     const testingPost = {
       auth_id: "auth0|6218c0cbeae91f006a0ab102",
       title: "Cucumber",
@@ -38,6 +38,37 @@ describe("POST /api/posts", function () {
     };
     expect(response.body.payload[0]).toMatchObject(exptected);
     expect(response.statusCode).toBe(201);
+  });
+});
+
+describe("POST /api/posts", function () {
+  test("gives us back 500, with an error message", async function () {
+    const response = await request(app).post("/api/posts").send({});
+    const exptected = {
+      "Error message": "Input fields are missing.",
+    };
+    expect(response.body).toMatchObject(exptected);
+    expect(response.statusCode).toBe(500);
+  });
+});
+
+describe("GET /api/posts/:id", function () {
+  test("gives us back 200, with a message", async function () {
+    const auth_id = "auth0|6218c0cbeae91f006a0ab102";
+    const response = await request(app).get(`/api/posts/${auth_id}`);
+    expect(response.statusCode).toBe(200);
+    expect(response.body.status).toStrictEqual("success");
+    expect(response.body.message).toStrictEqual("All user's posts");
+  });
+});
+
+describe("DELETE /api/posts/:id", function () {
+  test("gives us back 200, with a message", async function () {
+    const post_id = 107;
+    const response = await request(app).delete(`/api/posts/${post_id}`);
+    expect(response.statusCode).toBe(200);
+    expect(response.body.status).toBe("success");
+    expect(response.body.message).toBe("Post deleted");
   });
 });
 
