@@ -64,11 +64,23 @@ describe("GET /api/posts/:id", function () {
 
 describe("DELETE /api/posts/:id", function () {
   test("gives us back 200, with a message", async function () {
-    const post_id = 107;
-    const response = await request(app).delete(`/api/posts/${post_id}`);
+    const actual = {
+      post_id: 129,
+      user_id: 9,
+      title: "Cucumber",
+      quantity: "100g",
+      description: "Nice",
+      location: "London",
+      price: "10.99",
+      date: "10/10/2020",
+    };
+
+    const response = await request(app).delete(`/api/posts/${actual.post_id}`);
+
     expect(response.statusCode).toBe(200);
     expect(response.body.status).toBe("success");
     expect(response.body.message).toBe("Post deleted");
+    expect(response.body.payload[0]).toMatchObject(actual);
   });
 });
 
@@ -117,14 +129,29 @@ describe("GET /api/users", function () {
 describe("POST /api/users", function () {
   test("gives us back 201, with a message, and some data", async function () {
     const newUser = {
-      first_name: "John",
-      last_name: "Doe",
-      phone_number: "111111",
-      email: "john@doe.com",
+      auth_id: "auth0|6218c0cbeae91f006a0ab555",
+      first_name: "Test first",
+      last_name: "Test last",
+      phone_number: "123456",
+      email: "testing1234@metest.com",
       user_created: "2/3/2022",
     };
     const response = await request(app).post("/api/users").send(newUser);
+
     expect(response.statusCode).toBe(201);
-    expect(response.message).toBe("New user was created");
+    expect(response.body.status).toBe("success");
+    expect(response.body.message).toBe("New user created");
+    expect(response.body.payload[0]).toMatchObject(newUser);
+  });
+});
+
+describe("POST /api/users", function () {
+  test("gives us back 400, with an error message", async function () {
+    const response = await request(app).post("/api/users").send({});
+    const exptected = {
+      "Error message": "Fields are missing.",
+    };
+    expect(response.statusCode).toBe(500);
+    expect(response.body).toMatchObject(exptected);
   });
 });
