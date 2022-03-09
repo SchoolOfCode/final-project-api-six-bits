@@ -18,10 +18,10 @@ export const insertPost = asyncHandler(async (req, res) => {
   if (
     !auth_id ||
     !title ||
-    !quantity ||
+    quantity === undefined ||
     !description ||
     !location ||
-    !price ||
+    price === undefined ||
     !date
   ) {
     throw new Error("Input fields are missing.");
