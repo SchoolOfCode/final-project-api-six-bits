@@ -11,14 +11,14 @@
     "db:createusers": "node -r dotenv/config ./db/scripts/users/createTable.js",
     "db:populateusers": "node -r dotenv/config ./db/scripts/users/populateTable.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
-    "test": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "deletetest": "node -r dotenv/config ./db/scripts/posts/deletePost.js"
+    "test": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-async-handler": "^1.2.0",
     "morgan": "~1.9.1",
     "pg": "^8.7.1"
   },
