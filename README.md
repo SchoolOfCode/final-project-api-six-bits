@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/93525369/156549896-6ba5c047-9158-4497-99eb-846979a4c738.png)
+![logo](https://user-images.githubusercontent.com/93285219/157888599-5be96246-c9e0-4d6f-8449-649806b4bb60.png)
 
 # Back-End Repo for SalVeg
 
