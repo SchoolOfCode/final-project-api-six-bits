@@ -47,7 +47,6 @@ If you're new to Heroku or PostgreSQL on Heroku, [read here for more information
 4. `npm run test` Runs a suite of tests
 
 ## 6. Back-End Built With ⚡
-- Auth0      -    Authorisation and Authentication
 - Express    -    Routing and Server Middleware
 - GitHub     -    Sharing and Reviewing Code
 - Heroku     -    Continuous Deployment of Database
